@@ -8,7 +8,7 @@ class RowWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Widget Row'),
-      ), // AppBar
+      ),
       body: Row(
         children: const [
           Text('Ilmu Komputer'),
@@ -16,7 +16,7 @@ class RowWidget extends StatelessWidget {
           Text('Universitas Lampung'),
           Text('2025'),
         ],
-      ), // Row
-    ); // Scaffold
+      ),
+    );
   }
 }
