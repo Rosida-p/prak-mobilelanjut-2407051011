@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:video_player/video_player.dart';
 
 class AssetsMediaPage extends StatefulWidget {
   const AssetsMediaPage({super.key});
@@ -11,6 +13,19 @@ class AssetsMediaPage extends StatefulWidget {
 class _AssetsMediaPageState extends State<AssetsMediaPage> {
   final AudioPlayer player = AudioPlayer();
   bool isPlaying = false;
+
+  late VideoPlayerController videoController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    videoController = VideoPlayerController.asset(
+      'assets/videos/video.mp4',
+    )..initialize().then((_) {
+        setState(() {});
+      });
+  }
 
   void playAudio() async {
     if (isPlaying) {
@@ -29,6 +44,7 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
   @override
   void dispose() {
     player.dispose();
+    videoController.dispose();
     super.dispose();
   }
 
@@ -41,8 +57,6 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-
-              // Kartu profil
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
@@ -67,9 +81,7 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
                         fit: BoxFit.cover,
                       ),
                     ),
-
                     const SizedBox(height: 15),
-
                     const Text(
                       'Rosida Purnala Sari',
                       style: TextStyle(
@@ -81,10 +93,7 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
                   ],
                 ),
               ),
-
               const SizedBox(height: 20),
-
-              // Kartu audio
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
@@ -95,7 +104,6 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     const Text(
                       'Audio Motivasi',
                       style: TextStyle(
@@ -104,9 +112,7 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-
                     const SizedBox(height: 15),
-
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
@@ -128,9 +134,7 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
                               ),
                             ),
                           ),
-
                           const SizedBox(width: 12),
-
                           const Expanded(
                             child: LinearProgressIndicator(
                               minHeight: 6,
@@ -140,9 +144,7 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
                               ),
                             ),
                           ),
-
                           const SizedBox(width: 10),
-
                           const Icon(
                             Icons.volume_up,
                             color: Color(0xFF202342),
@@ -153,9 +155,59 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
                   ],
                 ),
               ),
-
               const SizedBox(height: 20),
-
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF7F5FB),
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Video',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    if (videoController.value.isInitialized)
+                      AspectRatio(
+                        aspectRatio: videoController.value.aspectRatio,
+                        child: VideoPlayer(videoController),
+                      )
+                    else
+                      const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    const SizedBox(height: 15),
+                    Center(
+                      child: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            if (videoController.value.isPlaying) {
+                              videoController.pause();
+                            } else {
+                              videoController.play();
+                            }
+                          });
+                        },
+                        icon: Icon(
+                          videoController.value.isPlaying
+                              ? Icons.pause_circle
+                              : Icons.play_circle,
+                          size: 50,
+                          color: Color(0xFF4D63D9),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -163,3 +215,4 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
     );
   }
 }
+
