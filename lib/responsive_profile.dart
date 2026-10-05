@@ -86,8 +86,8 @@ class _ProfileHeader extends StatelessWidget {
     );
   }
 }
-class _ProfileInfo extends StatelessWidget {
-  const _ProfileInfo();
+	class _ProfileInfo extends StatelessWidget {
+	  const _ProfileInfo();
 
   @override
   Widget build(BuildContext context) {
@@ -97,28 +97,27 @@ class _ProfileInfo extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
+          crossAxisAlignment: CrossAxisAlignment.start,	          children: [
+	            Text(
               'Informasi',
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 12),
             Text(
               'Ilmu Komputer',
-              style: Theme.of(context).textTheme.bodyLarge,
+             style: Theme.of(context).textTheme.bodyLarge,
             ),
-            const SizedBox(height: 8),
+           const SizedBox(height: 8),
             Text(
               'Universitas Lampung',
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 16),
-            Container(
-              width: double.infinity,
+	            Container(
+             width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: scheme.primaryContainer,
+               color: scheme.primaryContainer,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Text(
@@ -127,8 +126,10 @@ class _ProfileInfo extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
+	        ),
+	      ),
     );
   }
-}
+	}
+
+
