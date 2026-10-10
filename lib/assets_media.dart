@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:video_player/video_player.dart';
@@ -8,6 +7,7 @@ class AssetsMediaPage extends StatefulWidget {
 
   @override
   State<AssetsMediaPage> createState() => _AssetsMediaPageState();
+
 }
 
 class _AssetsMediaPageState extends State<AssetsMediaPage> {
@@ -156,7 +156,8 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              Container(
+
+               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -215,4 +216,4 @@ class _AssetsMediaPageState extends State<AssetsMediaPage> {
     );
   }
 }
-
+  
