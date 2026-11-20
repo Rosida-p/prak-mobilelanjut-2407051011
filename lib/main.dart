@@ -1,8 +1,17 @@
+
 import 'package:flutter/material.dart';
-import 'api_page.dart';
+import 'package:provider/provider.dart';
+
+import 'providers/product_provider.dart';
+import 'views/product_list_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ProductProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,11 +21,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'REST API Praktikum',
+      title: 'Praktikum Mobile Lanjut',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+        ),
+        useMaterial3: true,
       ),
-      home: const ApiPage(),
+      home: const ProductListView(),
     );
   }
 }
